@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './styles/App.css' ;
 import BrainDumpPage from './pages/BrainDumpPage';
-import BubbleBuddyPage from './pages/BubbleBuddyPage';
 import CalendarPage from './pages/CalendarPage';
 import FocusTimerPage from './pages/FocusTimerPage';
 import ProgressTrackerPage from './pages/ProgressTrackerPage';
@@ -19,7 +18,6 @@ function App() {
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/brain-dump" element={<BrainDumpPage />} />
-        <Route path="/bubble-buddy" element={<BubbleBuddyPage />} />
         <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/focus-timer" element={<FocusTimerPage />} />
         <Route path="/progress-tracker" element={<ProgressTrackerPage />} />

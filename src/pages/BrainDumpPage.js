@@ -149,8 +149,9 @@ const handleCancel = () => {
 
   return (
     <div>
-      <h1>Brain Dump</h1>
+      <h1>BRAIN DUMP</h1>
 
+        {/* new note section */}
       <div>
         <input
           type="text"
@@ -169,11 +170,11 @@ const handleCancel = () => {
           {editingIndex === null ? 'Add Note' : 'Save Note'}
         </button>
         <button onClick={handleCancel}>Cancel</button> {}
-
       </div>
 
+    {/* main notes section */}
       <div>
-        <h2>Notes</h2>
+        <h2>NOTES</h2>
         {notes.map((note) => (
           <div key={note.id} style={{ marginBottom: '10px' }}>
             <h3>{note.title}</h3>
