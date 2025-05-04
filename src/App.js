@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './styles/App.css' ;
+import './styles/App.css';
 import BrainDumpPage from './pages/BrainDumpPage';
 import CalendarPage from './pages/CalendarPage';
 import FocusTimerPage from './pages/FocusTimerPage';

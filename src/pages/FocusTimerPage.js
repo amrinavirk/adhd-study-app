@@ -91,11 +91,11 @@ const FocusTimerPage = () => {
                     background: '#ddd',
                     margin: '10px 0'
                 }}>
-                <div style={{
+                    <div style={{
                         height: '100%',
                         width: `${(timeLeft / (isFocus ? focusTimer * 60 : breakTimer * 60)) * 100}%`,
                         background: '#4caf50'
-                }}></div>
+                    }}></div>
                 </div>
                 <div>
                     <button onClick={handleStart} disabled={timerGoing}>START</button>
