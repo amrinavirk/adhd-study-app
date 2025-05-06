@@ -1,6 +1,6 @@
 class Task {
-    constructor(title, date, time, duration, category, subtasks = []) {
-        this.id = is || Date.now();
+    constructor(id, title, subtasks, category, date, time, duration, completed = []) {
+        this.id = id || Date.now();
         this.title = title || '';
         this.subtasks = subtasks || '';
         this.category = category || 'unscheduled';
