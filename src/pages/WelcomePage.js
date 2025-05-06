@@ -1,3 +1,7 @@
+// DEV NOTES:
+// page purpose - appears on opening app, guides user
+// include basic tutorial??
+
 function WelcomePage() {
     return (
         <div className="welcome-page">

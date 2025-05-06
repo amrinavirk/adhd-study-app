@@ -1,8 +1,14 @@
+// DEV NOTES:
+// page purpose - visual stimulation to aid focus
+// user can adjust colours, speed, intensity (brightness) - minimal selection options 3-5 options to avoid distractions
+// designated pop up - actual visual, no selection options
+
+
 import React, { useState, useEffect, useRef } from 'react';
 const StudyVisualsPage = () => {
     const canvasRef = useRef(null);
     const [colours, setColours] = useState(['#AFCAFF', '#D5D5FF']);
-    const [intensity, setIntensity] = useState(5);
+    const [intensity, setIntensity] = useState(3);
     const [speed, setSpeed] = useState(1);
     const colourOptions = {
         pink: '#F7DDF0',
@@ -20,28 +26,34 @@ const StudyVisualsPage = () => {
         const width = canvas.width = rect.width;
         const height = canvas.height = rect.height;
         let circles = [];
-        let circleCount = window.innerWidth / 100;
+        let circleCount = window.innerWidth / 200;
 
-        // Create circles
+
+        // create circles
         for (let i = 0; i < circleCount * 5; i++) {
             circles.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                radius: 120,
-                dx: (Math.random() - 0.5) * speed * 2,
-                dy: (Math.random() - 0.5) * speed * 2,
+                radius: 200,
+                // speed
+                dx: (Math.random() - 0.5) * speed * 4,
+                dy: (Math.random() - 0.5) * speed * 4,
                 colour: colours[i % colours.length]
             });
         }
 
+        // placing the circles and adding the blur filter
         const draw = () => {
             ctx.clearRect(0, 0, width, height);
             circles.forEach(circle => {
                 ctx.beginPath();
                 ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+                // colour
                 ctx.fillStyle = circle.colour;
-                ctx.globalAlpha = intensity / 12;
+                // intensity
+                ctx.globalAlpha = intensity / 4;
                 ctx.fill();
+                ctx.filter = 'blur(50px)'
             });
         };
 
@@ -54,6 +66,7 @@ const StudyVisualsPage = () => {
                 if (circle.y < 0 || circle.y > height) circle.dy *= -1;
             });
         };
+
 
         const animate = () => {
             draw();
@@ -96,7 +109,7 @@ const StudyVisualsPage = () => {
                 <label>
                     INTENSITY
                     <select value={intensity} onChange={(e) => setIntensity(parseInt(e.target.value))}>
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((level) => (
+                        {[1, 2, 3].map((level) => (
                             <option key={level} value={level}>
                                 {level}
                             </option>
@@ -132,4 +145,3 @@ const StudyVisualsPage = () => {
 }
 
 export default StudyVisualsPage;
-

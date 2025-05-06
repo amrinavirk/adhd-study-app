@@ -1,3 +1,10 @@
+// DEV NOTES:
+// page purpose - allows users to create notes to not be ditracted by random thoughts, each note has title and desc
+// each note is added to a huge, unorganised list (hence 'dump') where they can only delete/edit notes
+// limited functionality as it aims to prevent distraction rather than encourage fiddling w minor details/organisation
+// designated pop up - option to add note, notes aren't visible
+
+
 import React, { useState, useEffect, useCallback } from 'react';
 
 const BrainDumpPage = () => {
@@ -183,6 +190,11 @@ const BrainDumpPage = () => {
                         <button onClick={() => handleDeleteNote(note.id)}>Delete</button>
                     </div>
                 ))}
+            </div>
+            {/* mascot and speech bubble section */}
+            <div>
+                {/* insert mascot/animation */}
+                <sub>Don't forget to address and delete old notes to declutter!</sub>
             </div>
         </div>
     );

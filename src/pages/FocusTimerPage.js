@@ -1,3 +1,13 @@
+// DEV NOTES:
+// page purpose - focus/break timer where timings are selected before focus starts
+// times cant be adjusted unless reset is clicked
+// breaks dont auto start, user must acknowledge break has started and action it themselves
+// use css to create visual cue when user needs to break
+// designated pop-up - focus/break header, countdown, time left bar, buttons
+
+
+
+
 import React, { useState, useRef, useEffect } from 'react';
 
 const FocusTimerPage = () => {
