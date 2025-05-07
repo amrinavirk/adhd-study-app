@@ -6,18 +6,15 @@
 
 
 import React, { useState, useEffect, useCallback } from 'react';
-import {Task} from '../models/task';
 
 const dbName = 'BrainDumpDB';
-    const storeName = 'notesStore';
+const storeName = 'notesStore';
 
 const BrainDumpPage = () => {
     const [notes, setNotes] = useState([]);
     const [newNote, setNewNote] = useState({ title: '', body: '' });
     const [editingIndex, setEditingIndex] = useState(null);
-    const dbName = 'BrainDumpDB';
-    const storeName = 'notesStore';
-    
+
 
     // open or create new IndexedDB db
     const openDB = useCallback(() => {
