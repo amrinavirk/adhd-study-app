@@ -6,6 +6,10 @@
 
 
 import React, { useState, useEffect, useCallback } from 'react';
+import {Task} from '../models/task';
+
+const dbName = 'BrainDumpDB';
+    const storeName = 'notesStore';
 
 const BrainDumpPage = () => {
     const [notes, setNotes] = useState([]);
@@ -13,6 +17,7 @@ const BrainDumpPage = () => {
     const [editingIndex, setEditingIndex] = useState(null);
     const dbName = 'BrainDumpDB';
     const storeName = 'notesStore';
+    
 
     // open or create new IndexedDB db
     const openDB = useCallback(() => {
@@ -183,7 +188,7 @@ const BrainDumpPage = () => {
             <div>
                 <h2>NOTES</h2>
                 {notes.map((note) => (
-                    <div key={note.id} style={{ marginBottom: '10px' }}>
+                    <div key={note.id}>
                         <h3>{note.title}</h3>
                         <p>{note.body}</p>
                         <button onClick={() => handleEditNote(note.id)}>Edit</button>
