@@ -25,7 +25,7 @@ const BrainDumpPage = () => {
                 resolve(event.target.result);
             };
 
-            request.onerror = (event) => {
+            request.onerror = () => {
                 reject('error');
             };
 
