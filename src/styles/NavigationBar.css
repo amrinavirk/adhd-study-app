@@ -1,0 +1,39 @@
+.navbar {
+    position: fixed;
+    bottom: 0;
+    height: 12vh;
+    width: 100%;
+    padding: 0;
+}
+
+.rectanglenavbar {
+    background-color: #9a9ae4;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 12vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+.ellipse-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 100%;
+}
+
+.ellipse {
+    background-color: #afc9fe;
+    height: 9vh;
+    width: 9vh;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.75rem;
+}

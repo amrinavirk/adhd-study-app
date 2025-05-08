@@ -8,7 +8,6 @@ const ProgressTrackerPage = () => {
 
     return (
         <div>
-            <h1>PROGRESS TRACKER</h1>
         {/* */}
         </div>
     )

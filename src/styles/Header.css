@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Titan+One&display=swap');
+
+.header {
+    position: fixed;
+    top: 0;
+    height: 15vh;
+    width: 100%;
+    padding: 0;
+}
+
+.rectangleheader {
+    background-color: #D5D5FF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2vw;
+    border-bottom: 0.75vh solid #9B9BE4;
+}
+
+.ellipseheader {
+    background-color: #EAE5F4;
+    height: 10vh;
+    width: 10vh;
+    border-radius: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 1vw;
+}
+
+.headertitle {
+    font-size: 10vh;
+    color: #8FB4FF;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Titan One', sans-serif;
+    -webkit-text-stroke: 0.07rem #434396;
+  }

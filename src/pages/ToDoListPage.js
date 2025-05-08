@@ -199,7 +199,6 @@ const ToDoListPage = () => {
 
     return (
         <div>
-            <h1>TO DO LIST</h1>
 
             {/* add task section */}
             <div>

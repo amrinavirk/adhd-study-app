@@ -73,7 +73,6 @@ const FocusTimerPage = () => {
 
     return (
         <div>
-            <h1>FOCUS TIMER</h1>
             {/* selection option section */}
             <div>
                 <label> FOCUS

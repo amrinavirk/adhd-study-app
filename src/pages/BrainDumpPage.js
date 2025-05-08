@@ -158,8 +158,6 @@ const BrainDumpPage = () => {
 
     return (
         <div>
-            <h1>BRAIN DUMP</h1>
-
             {/* new note section */}
             <div>
                 <input

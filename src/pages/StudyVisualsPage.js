@@ -7,7 +7,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 const StudyVisualsPage = () => {
     const canvasRef = useRef(null);
-    const [colours, setColours] = useState(['#AFCAFF', '#D5D5FF']);
+    const [colours, setColours] = useState(['#F7DDF0', '#FFD7B7', '#FFFAB9', '#CEFFD2', '#AFCAFF', '#D5D5FF']);
     const [intensity, setIntensity] = useState(3);
     const [speed, setSpeed] = useState(1);
     const colourOptions = {
@@ -82,7 +82,6 @@ const StudyVisualsPage = () => {
 
     return (
         <div>
-            <h1>STUDY VISUALS</h1>
             {/* selection option section */}
             <div>
                 {/* colour selection*/}
@@ -131,7 +130,7 @@ const StudyVisualsPage = () => {
             </div>
 
             {/* study visual canvas */}
-            <div style={{ width: '100%', height: '400px', position: 'relative' }}>
+            <div style={{ width: '70vw' , height: '50vh', position: 'relative' }}>
                 <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />
             </div>
 

@@ -9,15 +9,92 @@ import StudyVisualsPage from './pages/StudyVisualsPage';
 import ToDoListPage from './pages/ToDoListPage';
 import WelcomePage from './pages/WelcomePage';
 import NavigationBar from './components/NavigationBar';
+import Header from './components/Header';
 
 
 function App() {
   return (
     <Router>
+      <Header />
       <NavigationBar />
       <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/brain-dump" element={<BrainDumpPage />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Header title="BUBBLE BUDDY" />
+              <WelcomePage />
+            </>
+          }
+        />
+        <Route
+          path="/brain-dump"
+          element={
+            <>
+              <Header title="BRAIN DUMP" />
+              <BrainDumpPage />
+            </>
+          }
+        />
+        <Route
+          path="/calendar"
+          element={
+            <>
+              <Header title="CALENDAR" />
+              <CalendarPage />
+            </>
+          }
+        />
+
+        <Route
+          path="/focus-timer"
+          element={
+            <>
+              <Header title="FOCUS TIMER" />
+              <FocusTimerPage />
+            </>
+          }
+        />
+
+        <Route
+          path="/progress-tracker"
+          element={
+            <>
+              <Header title="PROGRESS TRACKER" />
+              <ProgressTrackerPage />
+            </>
+          }
+        />
+
+        <Route
+          path="/settings"
+          element={
+            <>
+              <Header title="SETTINGS" />
+              <SettingsPage />
+            </>
+          }
+        />
+
+        <Route
+          path="/study-visuals"
+          element={
+            <>
+              <Header title="STUDY VISUALS" />
+              <StudyVisualsPage />
+            </>
+          }
+        />
+
+        <Route
+          path="/to-do-list"
+          element={
+            <>
+              <Header title="TO DO LIST" />
+              <ToDoListPage />
+            </>
+          }
+        />
         <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/focus-timer" element={<FocusTimerPage />} />
         <Route path="/progress-tracker" element={<ProgressTrackerPage />} />
