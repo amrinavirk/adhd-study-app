@@ -174,22 +174,24 @@ const BrainDumpPage = () => {
                     placeholder="Body of the note"
                 ></textarea>
                 <button onClick={editingIndex === null ? handleAddNote : handleSaveNote}>
-                    {editingIndex === null ? 'Add Note' : 'Save Note'}
+                    {editingIndex === null ? 'ADD NOTE' : 'SAVE NOTE'}
                 </button>
-                <button onClick={handleCancel}>Cancel</button> { }
+                <button onClick={handleCancel}>CANCEL</button> { }
             </div>
 
             {/* main notes section */}
             <div>
                 <h2>NOTES</h2>
-                {notes.map((note) => (
-                    <div key={note.id}>
-                        <h3>{note.title}</h3>
-                        <p>{note.body}</p>
-                        <button onClick={() => handleEditNote(note.id)}>Edit</button>
-                        <button onClick={() => handleDeleteNote(note.id)}>Delete</button>
-                    </div>
-                ))}
+                <div className="scrollcontainer">
+                    {notes.map((note) => (
+                        <div key={note.id}>
+                            <h3>{note.title}</h3>
+                            <p>{note.body}</p>
+                            <button onClick={() => handleEditNote(note.id)}>EDIT</button>
+                            <button onClick={() => handleDeleteNote(note.id)}>DELETE</button>
+                        </div>
+                    ))}
+                </div>
             </div>
             {/* mascot and speech bubble section */}
             <div>

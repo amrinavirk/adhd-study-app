@@ -1,10 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
+  background-color:#c7d8fb;
+  font-family: 'Roboto', sans-serif;
   text-align: center;
   justify-content: center;
-  background-color:#c7d8fb;
-  padding-top: 18vh;
-  padding-bottom: 14vh;
-  font-family: 'Roboto', sans-serif;
+  margin-top: 18vh;
+  margin-bottom: 14vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+.scrollcontainer {
+  height: 40vh;
+  overflow-y: auto;
+  /* #C3C3D4 #9D9DA7 */
 }

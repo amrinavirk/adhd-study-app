@@ -23,7 +23,7 @@ const ToDoListPage = () => {
     const [newTask, setNewTask] = useState({
         title: '',
         subtasks: '',
-        category: '',
+        category: 'unscheduled',
         date: '',
         time: '',
         duration: '',
@@ -31,6 +31,14 @@ const ToDoListPage = () => {
     });
 
     const [editingIndex, setEditingIndex] = useState(null);
+    const [taskError, setTaskError] = useState('');
+
+    const unscheduledTasks = tasks.filter((task) => task.category === 'unscheduled');
+    const [filterCategories, setFilterCategories] = useState(['category1', 'category2', 'category3', 'category4', 'category5', 'category6']);
+    const filteredTasks = tasks.filter((task) =>
+        filterCategories.includes(task.category)
+    );
+
 
     const openDB = useCallback(() => {
         return new Promise((resolve, reject) => {
@@ -84,28 +92,36 @@ const ToDoListPage = () => {
 
     // add task frontend
     const handleAddTask = () => {
-        const taskWithId = new Task(
-            null,
-            newTask.title,
-            newTask.subtasks,
-            newTask.category,
-            newTask.date,
-            newTask.time,
-            newTask.duration,
-            newTask.completed
-        );
-        addTaskToDB(taskWithId);
-        setTasks([...tasks, taskWithId]);
-        setNewTask({
-            title: '',
-            subtasks: '',
-            category: '',
-            date: '',
-            time: '',
-            duration: '',
-            completed: false,
-        });
-        setEditingIndex(null);
+        if ((newTask.category !== 'unscheduled' && newTask.title && newTask.subtasks && newTask.date && newTask.time && newTask.duration)
+            || (newTask.category === 'unscheduled' && newTask.title && newTask.subtasks)) {
+            const taskWithId = new Task(
+                null,
+                newTask.title,
+                newTask.subtasks,
+                newTask.category,
+                newTask.date,
+                newTask.time,
+                newTask.duration,
+                newTask.completed
+            );
+            addTaskToDB(taskWithId);
+            setTasks([...tasks, taskWithId]);
+            setNewTask({
+                title: '',
+                subtasks: '',
+                category: 'unscheduled',
+                date: '',
+                time: '',
+                duration: '',
+                completed: false,
+            });
+            setEditingIndex(null);
+            setTaskError('')
+        }
+        else {
+            setTaskError('please complete all required fields')
+
+        }
     };
 
     // edit task frontend
@@ -121,7 +137,7 @@ const ToDoListPage = () => {
         setNewTask({
             title: '',
             subtasks: '',
-            category: '',
+            category: 'unscheduled',
             date: '',
             time: '',
             duration: '',
@@ -142,13 +158,14 @@ const ToDoListPage = () => {
         setNewTask({
             title: '',
             subtasks: '',
-            category: '',
+            category: 'unscheduled',
             date: '',
             time: '',
             duration: '',
             completed: false,
         });
         setEditingIndex(null);
+        setTaskError('')
     };
 
     //add task backend
@@ -206,53 +223,116 @@ const ToDoListPage = () => {
                     TITLE
                     <input name="title" value={newTask.title} onChange={handleChange} />
                 </label>
+                <label htmlFor="category">CATEGORY</label>
+                <select name="category" value={newTask.category} onChange={handleChange}>
+                    <option value="unscheduled">UNSCHEDULED</option>
+                    <option value="category1">CATEGORY1</option>
+                    <option value="category2">CATEGORY2</option>
+                    <option value="category3">CATEGORY3</option>
+                    <option value="category4">CATEGORY4</option>
+                    <option value="category5">CATEGORY5</option>
+                    <option value="category6">CATEGORY6</option>
+                </select>
                 <label>
-                    CATEGORY
-                    <input name="category" value={newTask.category} onChange={handleChange} />
-                </label><label>
                     SUBTASKS
                     <textarea name="subtasks" value={newTask.subtasks} onChange={handleChange} />
                 </label>
                 <label>
                     DATE
-                    <input name="date" type="date" value={newTask.date} onChange={handleChange} />
+                    <input name="date" type="date" value={newTask.date} onChange={handleChange} disabled={newTask.category === 'unscheduled'} />
                 </label>
                 <label>
                     TIME
-                    <input name="time" type="time" value={newTask.time} onChange={handleChange} />
+                    <input name="time" type="time" step="1800" value={newTask.time} onChange={handleChange} disabled={newTask.category === 'unscheduled'} />
                 </label>
-                <label>
-                    DURATION
-                    <input name="duration" value={newTask.duration} onChange={handleChange} />
-                </label>
+                <label htmlFor="duration">DURATION</label>
+                <select name="duration" value={newTask.duration} onChange={handleChange} disabled={newTask.category === 'unscheduled'}>
+                    <option value=""></option>
+                    {[...Array(10)].map((_, i) => {
+                        const value = (i + 1) * 0.5;
+                        const hours = Math.floor(value);
+                        const minutes = value % 1 !== 0 ? 30 : 0;
+                        const label = `${hours > 0 ? `${hours}h` : ''}${minutes > 0 ? ` ${minutes}m` : ''}`.trim();
+                        return (
+                            <option key={value} value={value}>
+                                {label}
+                            </option>
+                        );
+                    })}
+                </select>
                 <button onClick={editingIndex === null ? handleAddTask : handleSaveTask}>
-                    {editingIndex === null ? 'Add Note' : 'Save Note'}</button>
-                <button onClick={handleCancelTask}>Cancel</button> { }
+                    {editingIndex === null ? 'ADD TASK' : 'SAVE TASK'}
+                </button>
+                <button onClick={handleCancelTask}>CANCEL</button> { }
+                <p>{taskError}</p>
             </div>
 
 
             {/* main task section */}
             <div>
                 <h2>TASKS</h2>
-                {tasks.map((task) => (
-                    <div key={task.id} style={{ marginBottom: '10px' }}>
-                        <h3>{task.title}</h3>
-                        <h4>CATEGORY:{task.category}</h4>
-                        <p>SUBTASKS:{task.subtasks}</p>
-                        <p>DATE:{task.date}</p>
-                        <p>TIME:{task.time}</p>
-                        <p>DURATION:{task.duration} hours </p>
-                        <button onClick={() => handleEditTask(task.id)}>Edit</button>
-                        <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
-                    </div>
-                ))}
+                <div className="scrollcontainer">
+                    {filteredTasks.map((task) => (
+                        <div key={task.id}>
+                            <h3>{task.title}</h3>
+                            <h4>CATEGORY:{task.category}</h4>
+                            <p>SUBTASKS:{task.subtasks}</p>
+                            <p>DATE:{task.date}</p>
+                            <p>TIME:{task.time}</p>
+                            <p>DURATION: {
+                                (() => {
+                                    const value = parseFloat(task.duration);
+                                    if (!value) return '';
+                                    const hours = Math.floor(value);
+                                    const minutes = value % 1 !== 0 ? 30 : 0;
+                                    return `${hours > 0 ? `${hours}h` : ''}${minutes > 0 ? ` ${minutes}m` : ''}`.trim();
+                                })()
+                            }
+                            </p>
+                            <button onClick={() => handleEditTask(task.id)}>EDIT</button>
+                            <button onClick={() => handleDeleteTask(task.id)}>DELETE</button>
+                        </div>
+                    ))}
+                </div>
             </div>
             {/* main task filter selection */}
+            <div>
+                <legend>FILTER</legend>
+                {[1, 2, 3, 4, 5, 6].map((num) => {
+                    const cat = `category${num}`;
+                    return (
+                        <label key={cat}>
+                            <input
+                                type="checkbox"
+                                checked={filterCategories.includes(cat)}
+                                onChange={() => {
+                                    setFilterCategories((prev) =>
+                                        prev.includes(cat)
+                                            ? prev.filter((c) => c !== cat)
+                                            : [...prev, cat]
+                                    );
+                                }}
+                            />
+                            {cat}
+                        </label>
+                    );
+                })}
+            </div>
 
 
             {/* unscheduled tasks section */}
+            <h2>UNSCHEDULED</h2>
+            <div className='scrollcontainer'>
+                {unscheduledTasks.map((task) => (
+                    <div key={task.id}>
+                        <h3>{task.title}</h3>
+                        <p>SUBTASKS: {task.subtasks}</p>
+                        <button onClick={() => handleEditTask(task.id)}>EDIT</button>
+                        <button onClick={() => handleDeleteTask(task.id)}>DELETE</button>
+                    </div>
+                ))}
 
-
+            </div>
         </div>
     )
 }
