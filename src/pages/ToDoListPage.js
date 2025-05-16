@@ -36,7 +36,7 @@ const ToDoListPage = () => {
     const unscheduledTasks = tasks.filter((task) => task.category === 'unscheduled');
     const [filterCategories, setFilterCategories] = useState(['category1', 'category2', 'category3', 'category4', 'category5', 'category6']);
     const filteredTasks = tasks.filter((task) =>
-        filterCategories.includes(task.category)
+        filterCategories.includes(task.category) && !task.completed
     );
 
 
@@ -123,6 +123,12 @@ const ToDoListPage = () => {
 
         }
     };
+
+    const handleCompleteTask = async (id) => {
+        const task = tasks.find((t) => t.id === id)
+        const updatedTask = { ...task, completed: true };
+        await updateTaskInDB(updatedTask);
+    }
 
     // edit task frontend
     const handleEditTask = (id) => {
@@ -289,6 +295,7 @@ const ToDoListPage = () => {
                                 })()
                             }
                             </p>
+                            <button onClick={() => handleCompleteTask(task.id)}>MARK COMPLETED</button>
                             <button onClick={() => handleEditTask(task.id)}>EDIT</button>
                             <button onClick={() => handleDeleteTask(task.id)}>DELETE</button>
                         </div>

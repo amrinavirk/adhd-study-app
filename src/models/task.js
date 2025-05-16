@@ -1,5 +1,5 @@
 class Task {
-    constructor(id, title, subtasks, category, date, time, duration, completed = false ) {
+    constructor(id, title, subtasks, category, date, time, duration, completed = false) {
         this.id = id || Date.now();
         this.title = title || '';
         this.subtasks = subtasks || '';
@@ -23,22 +23,28 @@ class Task {
 
     setColour(category) {
         const categoryColours = {
-          category1: '#F7DDF0', //pink
-          category2: '#FFD7B7', //orange
-          category3: '#FFFAB9', //yellow
-          category4: '#CEFFD2', //green
-          category5: '#AFCAFF', //blue
-          category6: '#D5D5FF', //purple
-          unscheduled: '#EAE5F4' //grey
+            category1: '#F7DDF0', //pink
+            category2: '#FFD7B7', //orange
+            category3: '#FFFAB9', //yellow
+            category4: '#CEFFD2', //green
+            category5: '#AFCAFF', //blue
+            category6: '#D5D5FF', //purple
+            unscheduled: '#EAE5F4' //grey
         };
         return categoryColours[category] || '';
-      }
+    }
 
 
 
     isOverdue(currentDateTime = new Date()) {
-        if (this.completed || !this.date || !this.time) return false;
-        const dueDateTime = new Date(`${this.date}T${this.time}`);
+        // if (this.completed || !this.date || !this.time) return false;
+        // const dueDateTime = new Date(`${this.date}T${this.time}`);
+        // return currentDateTime > dueDateTime;
+        if (this.completed || !this.date || !this.time || !this.duration) return false;
+        const [hour, minute] = this.time.split(':').map(Number);
+        const start = new Date(`${this.date}T${this.time}`);
+        const durationMinutes = parseFloat(this.duration) * 60;
+        const dueDateTime = new Date(start.getTime() + durationMinutes * 60000);
         return currentDateTime > dueDateTime;
     }
 

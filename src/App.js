@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './styles/App.css';
 import BrainDumpPage from './pages/BrainDumpPage';
-import CalendarPage from './pages/CalendarPage';
+import DashboardPage from './pages/DashboardPage';
 import FocusTimerPage from './pages/FocusTimerPage';
 import ProgressTrackerPage from './pages/ProgressTrackerPage';
 import SettingsPage from './pages/SettingsPage';
@@ -15,7 +15,7 @@ import Header from './components/Header';
 function App() {
   return (
     <Router>
-      <Header />
+      <Header/>
       <NavigationBar />
       <Routes>
         <Route
@@ -37,11 +37,11 @@ function App() {
           }
         />
         <Route
-          path="/calendar"
+          path="/dashboard"
           element={
             <>
-              <Header title="CALENDAR" />
-              <CalendarPage />
+              <Header title="DASHBOARD" />
+              <DashboardPage />
             </>
           }
         />
@@ -95,7 +95,7 @@ function App() {
             </>
           }
         />
-        <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/focus-timer" element={<FocusTimerPage />} />
         <Route path="/progress-tracker" element={<ProgressTrackerPage />} />
         <Route path="/settings" element={<SettingsPage />} />

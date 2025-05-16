@@ -8,7 +8,7 @@ function NavigationBar() {
         <div className="ellipse-container">
 
           <div className="ellipse">
-            <Link to="/calendar">Calendar</Link>
+            <Link to="/dashboard">Dashboard</Link>
           </div>
           <div className="ellipse">
             <Link to="/to-do-list">To Do List</Link>
