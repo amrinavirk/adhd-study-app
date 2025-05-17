@@ -1,6 +1,3 @@
-// DEV NOTES:
-// page purpose - show daily tasks, show overdue tasks needing to be rescheduled
-
 import React, { useState, useEffect, useCallback } from 'react';
 import Task from '../models/task'
 

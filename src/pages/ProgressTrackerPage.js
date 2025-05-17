@@ -1,6 +1,3 @@
-// DEV NOTES:
-// page purpose - 
-
 import React, { useState } from 'react';
 
 const ProgressTrackerPage = () => {

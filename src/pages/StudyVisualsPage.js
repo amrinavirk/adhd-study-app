@@ -1,9 +1,3 @@
-// DEV NOTES:
-// page purpose - visual stimulation to aid focus
-// user can adjust colours, speed, intensity (brightness) - minimal selection options 3-5 options to avoid distractions
-// designated pop up - actual visual, no selection options
-
-
 import React, { useState, useEffect, useRef } from 'react';
 const StudyVisualsPage = () => {
     const canvasRef = useRef(null);
