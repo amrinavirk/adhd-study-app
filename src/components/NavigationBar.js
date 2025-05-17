@@ -4,7 +4,7 @@ import '../styles/NavigationBar.css'
 function NavigationBar() {
   return (
     <nav className="navbar">
-      <div class='rectanglenavbar'>
+      <div className='rectanglenavbar'>
         <div className="ellipse-container">
 
           <div className="ellipse">

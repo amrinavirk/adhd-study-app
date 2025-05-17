@@ -38,6 +38,8 @@ const ToDoListPage = () => {
     const filteredTasks = tasks.filter((task) =>
         filterCategories.includes(task.category) && !task.completed
     );
+    const [schedulingTaskId, setSchedulingTaskId] = useState(null);
+    const [scheduleData, setScheduleData] = useState({ date: '', time: '', category: '' });
 
 
     const openDB = useCallback(() => {
@@ -124,6 +126,7 @@ const ToDoListPage = () => {
         }
     };
 
+    // mark task completed
     const handleCompleteTask = async (id) => {
         const task = tasks.find((t) => t.id === id)
         const updatedTask = { ...task, completed: true };
@@ -157,6 +160,23 @@ const ToDoListPage = () => {
     const handleDeleteTask = (index) => {
         deleteTaskFromDB(index);
     };
+
+
+    const handleScheduleTask = (taskId) => {
+        setSchedulingTaskId(taskId);
+        setScheduleData({ category: '', time: '', date: '', duration: '' });
+    };
+
+    const handleSaveSchedule = async () => {
+        const taskToUpdate = tasks.find(t => t.id === schedulingTaskId);
+        const updatedTask = { ...taskToUpdate, ...scheduleData };
+
+        await updateTaskInDB(updatedTask);
+        setSchedulingTaskId(null);
+        setScheduleData({ category: '', time: '', date: '', duration: '' });
+        loadTasks();
+    };
+
 
 
     //cancel adding/editing and clear forms
@@ -334,8 +354,57 @@ const ToDoListPage = () => {
                     <div key={task.id}>
                         <h3>{task.title}</h3>
                         <p>SUBTASKS: {task.subtasks}</p>
-                        <button onClick={() => handleEditTask(task.id)}>EDIT</button>
-                        <button onClick={() => handleDeleteTask(task.id)}>DELETE</button>
+                        <button onClick={() => {
+                            handleScheduleTask(task.id);
+                            setScheduleData({ category: '', time: '', date: '', duration: '' });
+                        }}>SCHEDULE</button>
+                        {schedulingTaskId === task.id && (
+                            <div className="schedule-form">
+                                <select
+                                    value={scheduleData.category}
+                                    onChange={(e) => setScheduleData({ ...scheduleData, category: e.target.value })}
+                                >
+
+                                    <option value="category1">CATEGORY1</option>
+                                    <option value="category2">CATEGORY2</option>
+                                    <option value="category3">CATEGORY3</option>
+                                    <option value="category4">CATEGORY4</option>
+                                    <option value="category5">CATEGORY5</option>
+                                    <option value="category6">CATEGORY6</option>
+                                </select>
+                                <input
+                                    type="date"
+                                    value={scheduleData.date}
+                                    onChange={(e) => setScheduleData({ ...scheduleData, date: e.target.value })}
+                                />
+                                <input
+                                    type="time"
+                                    value={scheduleData.time}
+                                    onChange={(e) => setScheduleData({ ...scheduleData, time: e.target.value })}
+                                />
+                                <select
+                                value={scheduleData.duration} 
+                                onChange={(e) => setScheduleData({ ...scheduleData, duration: e.target.value })}
+                                >
+                                    <option value=""></option>
+                                    {[...Array(10)].map((_, i) => {
+                                        const value = (i + 1) * 0.5;
+                                        const hours = Math.floor(value);
+                                        const minutes = value % 1 !== 0 ? 30 : 0;
+                                        const label = `${hours > 0 ? `${hours}h` : ''}${minutes > 0 ? ` ${minutes}m` : ''}`.trim();
+                                        return (
+                                            <option key={value} value={value}>
+                                                {label}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
+                                <button onClick={handleSaveSchedule} disabled={!scheduleData.date || !scheduleData.time || !scheduleData.category || !scheduleData.duration}>SAVE</button>
+                                <button onClick={() => setSchedulingTaskId(null)}>CANCEL</button>
+                            </div>
+                        )}
+                        <button onClick={() => handleEditTask(task.id)} disabled={schedulingTaskId} >EDIT</button>
+                        <button onClick={() => handleDeleteTask(task.id)} disabled={schedulingTaskId} >DELETE</button>
                     </div>
                 ))}
 
