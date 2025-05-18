@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import '../styles/StudyVisuals.css';
+import mascot from '../assets/bubble.png';
 
 const StudyVisualsPage = () => {
     const canvasRef = useRef(null);

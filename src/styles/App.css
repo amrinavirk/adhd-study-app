@@ -1,19 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-body {
-  display: flex;
-  justify-content: center;
-  font-family: 'Roboto', sans-serif;
-  text-align: center;
-  margin-top: 18vh;
-  margin-bottom: 14vh;
-  margin-left: 1vw;
-  margin-right: 1vw;
-  background-color:#c7d8fb;
-}
-
-.scrollcontainer {
+.scroll-container {
   height: 40vh;
   overflow-y: auto;
   /* #C3C3D4 #9D9DA7 */
+}
+
+h2 {
+    font-family: 'Titan One', sans-serif;
+    color: #AFCAFF;
+    -webkit-text-stroke: 0.07rem #9B9BE4;
+    font-size: 5.5vh;
+}
+
+h3{
+  font-size: 1.3rem;
+  text-decoration: underline;
+}
+
+h4{
+  font-size: 0.8rem;
+}
+
+h5{
+  font-size: 0.8rem;
+  font-style: italic;
+}
+p{
+  font-size: 0.8rem;
+}
+
+.action-btn{
+    background-color: #c7d8fb;
+    color: #434396;
+    border: 1.5px solid #434396;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 0.3rem;
+    margin: 0.2rem;
+}
+.action-btn:hover{
+    background-color: #9B9BE4;
 }

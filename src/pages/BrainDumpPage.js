@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import '../styles/BrainDump.css';
+import mascot from '../assets/bubble.png';
 
 const dbName = 'BrainDumpDB';
 const storeName = 'notesStore';
@@ -173,7 +174,7 @@ const BrainDumpPage = () => {
             {/* main notes section */}
             <div>
                 <h2>NOTES</h2>
-                <div className="scrollcontainer">
+                <div className="scroll-container">
                     {notes.map((note) => (
                         <div key={note.id}>
                             {editingNoteId === note.id ? (

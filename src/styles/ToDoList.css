@@ -1,0 +1,35 @@
+.todolist-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+}
+
+.addtask-container {
+    height: auto;
+}
+
+.filter-container {
+    height: auto;
+}
+
+.filter-scroll {
+    overflow-y: auto;
+}
+
+.maintask-container {
+    height: auto;
+}
+
+.maintask-scroll {
+    overflow-y: auto;
+}
+
+
+.unscheduled-container {
+    height: auto;
+}
+
+.unscheduled-scroll {
+    overflow-y: auto;
+}

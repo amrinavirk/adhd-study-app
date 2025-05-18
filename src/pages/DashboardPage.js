@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Task from '../models/task'
 import '../styles/Dashboard.css';
+import mascot from '../assets/bubble.png';
 
 const dbName = 'ToDoListDB';
 const storeName = 'taskStore';
@@ -96,22 +97,18 @@ const DashboardPage = () => {
 
 
     return (
-        <div>
+        <div className='dashboard-wrapper'>
             {/* daily */}
-            <div>
+            <div className='daily-container'>
                 <h2>DAILY SCHEDULE</h2>
-                <div className="scrollcontainer">
+                <div className="daily-scroll">
                     {todayTasks.length === 0 ? (
                         <p>No tasks for today, to add tasks use the to do list page</p>
                     ) : (
                         todayTasks.map((task) => (
-                            < div key={task.id} >
+                            < div className='taskD' style={{ backgroundColor: task.colour }} key={task.id} >
                                 <h3>{task.title}</h3>
-                                <h4>CATEGORY:{task.category}</h4>
-                                <p>SUBTASKS:{task.subtasks}</p>
-                                <p>DATE:{task.date}</p>
-                                <p>TIME:{task.time}</p>
-                                <p>DURATION: {
+                                <h4>{task.date} | {task.time} | {
                                     (() => {
                                         const value = parseFloat(task.duration);
                                         if (!value) return '';
@@ -119,29 +116,27 @@ const DashboardPage = () => {
                                         const minutes = value % 1 !== 0 ? 30 : 0;
                                         return `${hours > 0 ? `${hours}h` : ''}${minutes > 0 ? ` ${minutes}m` : ''}`.trim();
                                     })()
-                                }
-                                </p>
-                                <button onClick={() => handleCompleteTask(task.id)}>MARK COMPLETED</button>
+                                }</h4>
+                                <h5>{task.category}</h5>
+                                <h4>Sub-tasks:</h4>
+                                <p>{task.subtasks}</p>
+                                <button className='action-btn' onClick={() => handleCompleteTask(task.id)}>Completed</button>
                             </div>
                         ))
                     )}
                 </div>
             </div>
             {/* overdue */}
-            <div>
+            <div className='overdue-container'>
                 <h2>OVERDUE</h2>
-                <div className="scrollcontainer">
+                <div className="overdue-scroll">
                     {overdueTasks.length === 0 ? (
                         <p>No overdue tasks</p>
                     ) : (
                         overdueTasks.map((task) => (
-                            <div key={task.id}>
+                            <div className='taskD' style={{ backgroundColor: task.colour }} key={task.id}>
                                 <h3>{task.title}</h3>
-                                <h4>CATEGORY:{task.category}</h4>
-                                <p>SUBTASKS:{task.subtasks}</p>
-                                <p>DATE:{task.date}</p>
-                                <p>TIME:{task.time}</p>
-                                <p>DURATION: {
+                                <h4>{task.date} | {task.time} | {
                                     (() => {
                                         const value = parseFloat(task.duration);
                                         if (!value) return '';
@@ -149,23 +144,27 @@ const DashboardPage = () => {
                                         const minutes = value % 1 !== 0 ? 30 : 0;
                                         return `${hours > 0 ? `${hours}h` : ''}${minutes > 0 ? ` ${minutes}m` : ''}`.trim();
                                     })()
-                                }
-                                </p>
-                                <button onClick={() => handleRescheduleTask(task)}>RESCHEDULE</button>
+                                }</h4>
+                                <h5>{task.category}</h5>
+                                <h4>Sub-tasks:</h4>
+                                <p>{task.subtasks}</p>
+                                <button className='action-btn' onClick={() => handleRescheduleTask(task)}>Reschedule</button>
                                 {reschedulingTaskId === task.id && (
-                                    <div className="reschedule-form">
-                                        <input
-                                            type="date"
-                                            value={rescheduleData.date}
-                                            onChange={(e) => setRescheduleData({ ...rescheduleData, date: e.target.value })}
-                                        />
-                                        <input
-                                            type="time"
-                                            value={rescheduleData.time}
-                                            onChange={(e) => setRescheduleData({ ...rescheduleData, time: e.target.value })}
-                                        />
-                                        <button onClick={handleSaveReschedule}>SAVE</button>
-                                        <button onClick={() => setReschedulingTaskId(null)}>CANCEL</button>
+                                    <div>
+                                        <div className='reschedule-form'>
+                                            <input
+                                                type="date"
+                                                value={rescheduleData.date}
+                                                onChange={(e) => setRescheduleData({ ...rescheduleData, date: e.target.value })}
+                                            />
+                                            <input
+                                                type="time"
+                                                value={rescheduleData.time}
+                                                onChange={(e) => setRescheduleData({ ...rescheduleData, time: e.target.value })}
+                                            />
+                                        </div>
+                                        <button className='action-btn' onClick={handleSaveReschedule}>Save</button>
+                                        <button className='action-btn' onClick={() => setReschedulingTaskId(null)}>Cancel</button>
                                     </div>
                                 )}
                             </div>
@@ -174,9 +173,14 @@ const DashboardPage = () => {
                 </div>
             </div>
             {/* mascot and speech bubble section */}
-            <div>
-                {/* insert mascot/animation */}
-                <sub> Reschedule overdue tasks and focus on today!</sub>
+            <div className='mascot-wrapperD'>
+                <div className="mascot-speechD">
+                    <sub> Reschedule overdue tasks and focus on today!</sub>
+                </div>
+                <div className="mascot-containerD">
+                    <img src={mascot} alt="mascot" />
+                </div>
+
             </div>
         </div >
     );

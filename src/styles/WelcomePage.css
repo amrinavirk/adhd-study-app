@@ -1,0 +1,31 @@
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  height: 60vh;
+}
+
+.mascot-containerW {
+  position: relative;
+  width: 60vh;
+  height: auto;
+}
+
+.mascot-containerW img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mascot-speechW {
+  position: relative;
+  border-color: white;
+  border-radius: 5rem;
+  padding: 2rem;
+  margin-left: 3rem;
+  max-width: 100%;
+  font-size: 2.5rem;
+  font-weight: 500;
+  box-shadow: 0px 0px 30px rgb(255, 255, 255);
+}

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import '../styles/FocusTimer.css';
+import mascot from '../assets/bubble.png';
 
 const FocusTimerPage = () => {
     const [focusTimer, setFocusTimer] = useState(25);
