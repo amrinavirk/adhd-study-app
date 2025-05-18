@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
-  background-color:#c7d8fb;
+  display: flex;
+  justify-content: center;
+  
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  justify-content: center;
   margin-top: 18vh;
   margin-bottom: 14vh;
   margin-left: 1vw;
   margin-right: 1vw;
+  background-color:#c7d8fb;
 }
 
 .scrollcontainer {

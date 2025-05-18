@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+// import { useState } from 'react';
 
-const ProgressTrackerPage = () => {
+// const ProgressTrackerPage = () => {
 
 
-    return (
-        <div>
-        {/* progress tracker graph */}
+//     return (
+//         <div>
+//         {/* progress tracker graph */}
 
-        {/* mascot and speech bubble section */}
-        <div>
-                {/* insert mascot/animation */}
-                <sub>This week you completed __ tasks well done!</sub>
-            </div>
-        </div>
-    )
+//         {/* mascot and speech bubble section */}
+//         <div>
+//                 {/* insert mascot/animation */}
+//                 <sub>This week you completed __ tasks well done!</sub>
+//             </div>
+//         </div>
+//     )
 
-}
+// }
 
-export default ProgressTrackerPage;
+// export default ProgressTrackerPage;

@@ -7,13 +7,13 @@
 }
 
 .rectanglenavbar {
+    display: flex;
     background-color: #9a9ae4;
     position: fixed;
     bottom: 0;
     left: 0;
     height: 12vh;
     width: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
     gap: 2vw;

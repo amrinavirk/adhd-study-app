@@ -22,12 +22,12 @@ function NavigationBar() {
           <div className="ellipse">
             <Link to="/study-visuals">Study Visuals</Link>
           </div>
-          <div className="ellipse">
+          {/* <div className="ellipse">
             <Link to="/progress-tracker">Progress Tracker</Link>
           </div>
           <div className="ellipse">
             <Link to="/settings">Settings</Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

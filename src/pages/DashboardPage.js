@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Task from '../models/task'
 
 const dbName = 'ToDoListDB';
@@ -62,10 +62,11 @@ const DashboardPage = () => {
 
     // mark task completed
     const handleCompleteTask = async (id) => {
-        const task = tasks.find((t) => t.id === id)
-        const updatedTask = { ...task, completed: true };
-        await updateTaskInDB(updatedTask);
-    }
+        const task = tasks.find((t) => t.id === id);
+        const hydratedTask = Object.setPrototypeOf(task, Task.prototype);
+        hydratedTask.markCompleted();
+        await updateTaskInDB(task);
+    };
 
     //save task
     const handleSaveReschedule = async () => {

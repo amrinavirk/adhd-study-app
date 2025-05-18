@@ -1,5 +1,5 @@
 class Task {
-    constructor(id, title, subtasks, category, date, time, duration, completed = false) {
+    constructor(id, title, subtasks, category, date, time, duration, completed = false, completedAt = null) {
         this.id = id || Date.now();
         this.title = title || '';
         this.subtasks = subtasks || '';
@@ -8,6 +8,7 @@ class Task {
         this.time = time || '';
         this.duration = duration || '';
         this.completed = completed || false;
+        this.completedAt = '';
         this.colour = this.setColour(this.category)
     }
 
@@ -37,11 +38,7 @@ class Task {
 
 
     isOverdue(currentDateTime = new Date()) {
-        // if (this.completed || !this.date || !this.time) return false;
-        // const dueDateTime = new Date(`${this.date}T${this.time}`);
-        // return currentDateTime > dueDateTime;
         if (this.completed || !this.date || !this.time || !this.duration) return false;
-        const [hour, minute] = this.time.split(':').map(Number);
         const start = new Date(`${this.date}T${this.time}`);
         const durationMinutes = parseFloat(this.duration) * 60;
         const dueDateTime = new Date(start.getTime() + durationMinutes * 60000);
@@ -50,6 +47,7 @@ class Task {
 
     markCompleted() {
         this.completed = true;
+        this.completedAt = new Date().toLocaleDateString('en-CA')
     }
 
     edit(details) {

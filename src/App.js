@@ -56,7 +56,7 @@ function App() {
           }
         />
 
-        <Route
+        {/* <Route
           path="/progress-tracker"
           element={
             <>
@@ -74,7 +74,7 @@ function App() {
               <SettingsPage />
             </>
           }
-        />
+        /> */}
 
         <Route
           path="/study-visuals"

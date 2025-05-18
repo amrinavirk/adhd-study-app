@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+// import { useState } from 'react';
 
-const SettingsPage = () => {
+// const SettingsPage = () => {
 
 
-    return (
-        <div>
-        {/* */}
-        </div>
-    )
+//     return (
+//         <div>
+//         {/* */}
+//         </div>
+//     )
 
-}
+// }
 
-export default SettingsPage;
+// export default SettingsPage;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Task from '../models/task';
 
 const dbName = 'ToDoListDB';
@@ -14,19 +14,11 @@ const ToDoListPage = () => {
         time: '',
         duration: '',
         completed: false,
+        completedAt: ''
     });
 
     const [editingIndex, setEditingIndex] = useState(null);
     const [taskError, setTaskError] = useState('');
-    const [editFormData, setEditFormData] = useState({
-        title: '',
-        subtasks: '',
-        date: '',
-        time: '',
-        duration: '',
-        category: ''
-    });
-
 
     const unscheduledTasks = tasks.filter((task) => task.category === 'unscheduled');
     const [filterCategories, setFilterCategories] = useState(['category1', 'category2', 'category3', 'category4', 'category5', 'category6']);
@@ -36,8 +28,10 @@ const ToDoListPage = () => {
             const dateTimeB = new Date(`${b.date}T${b.time}`);
             return dateTimeA - dateTimeB;
         });
+
     const [schedulingTaskId, setSchedulingTaskId] = useState(null);
     const [scheduleData, setScheduleData] = useState({ date: '', time: '', category: '' });
+    
     const [editingTaskId, setEditingTaskId] = useState(null);
     const [inlineEditData, setInlineEditData] = useState({});
 
@@ -104,7 +98,8 @@ const ToDoListPage = () => {
                 newTask.date,
                 newTask.time,
                 newTask.duration,
-                newTask.completed
+                newTask.completed,
+                newTask.completedAt
             );
             addTaskToDB(taskWithId);
             setTasks([...tasks, taskWithId]);
@@ -116,6 +111,7 @@ const ToDoListPage = () => {
                 time: '',
                 duration: '',
                 completed: false,
+                completedAt: '',
             });
             setEditingIndex(null);
             setTaskError('')
@@ -128,23 +124,10 @@ const ToDoListPage = () => {
 
     // mark task completed
     const handleCompleteTask = async (id) => {
-        const task = tasks.find((t) => t.id === id)
-        const updatedTask = { ...task, completed: true };
-        await updateTaskInDB(updatedTask);
-    }
-
-    // edit task frontend
-    const handleEditTask = (id) => {
         const task = tasks.find((t) => t.id === id);
-        setEditingIndex(id);
-        setEditFormData({
-            title: task.title,
-            subtasks: task.subtasks,
-            category: task.category,
-            date: task.date,
-            time: task.time,
-            duration: task.duration
-        });
+        const hydratedTask = Object.setPrototypeOf(task, Task.prototype);
+        hydratedTask.markCompleted();
+        await updateTaskInDB(task);
     };
 
 
@@ -298,7 +281,29 @@ const ToDoListPage = () => {
                 <button onClick={handleCancelTask}>CANCEL</button> { }
                 <p>{taskError}</p>
             </div>
-
+            {/* main task filter selection */}
+            <div>
+                <legend>FILTER</legend>
+                {[1, 2, 3, 4, 5, 6].map((num) => {
+                    const cat = `category${num}`;
+                    return (
+                        <label key={cat}>
+                            <input
+                                type="checkbox"
+                                checked={filterCategories.includes(cat)}
+                                onChange={() => {
+                                    setFilterCategories((prev) =>
+                                        prev.includes(cat)
+                                            ? prev.filter((c) => c !== cat)
+                                            : [...prev, cat]
+                                    );
+                                }}
+                            />
+                            {cat}
+                        </label>
+                    );
+                })}
+            </div>
 
             {/* main task section */}
             <div>
@@ -380,7 +385,6 @@ const ToDoListPage = () => {
                         </div>
                     ))}
                 </div>
-
             </div>
 
 

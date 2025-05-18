@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const dbName = 'BrainDumpDB';
 const storeName = 'notesStore';
@@ -7,6 +7,9 @@ const BrainDumpPage = () => {
     const [notes, setNotes] = useState([]);
     const [newNote, setNewNote] = useState({ title: '', body: '' });
     const [editingIndex, setEditingIndex] = useState(null);
+    const [editingNoteId, setEditingNoteId] = useState(null);
+    const [editingContent, setEditingContent] = useState({ title: '', body: '' });
+
 
 
     // open or create new IndexedDB db
@@ -72,20 +75,14 @@ const BrainDumpPage = () => {
         }
     };
 
-
-    // edit note frontend
-    const handleEditNote = (id) => {
-        const noteToEdit = notes.find((note) => note.id === id);
-        setNewNote(noteToEdit);
-        setEditingIndex(id);
-    };
-
     //save note frontend
-    const handleSaveNote = () => {
-        updateNoteInDB({ ...newNote, id: editingIndex });
-        setNewNote({ title: '', body: '' });
-        setEditingIndex(null);
+    const handleSaveNote = async (id) => {
+        const updatedNote = { id, ...editingContent };
+        await updateNoteInDB(updatedNote);
+        setEditingNoteId(null);
+        setEditingContent({ title: '', body: '' });
     };
+
 
 
     //delete note frontend
@@ -178,12 +175,44 @@ const BrainDumpPage = () => {
                 <div className="scrollcontainer">
                     {notes.map((note) => (
                         <div key={note.id}>
-                            <h3>{note.title}</h3>
-                            <p>{note.body}</p>
-                            <button onClick={() => handleEditNote(note.id)}>EDIT</button>
-                            <button onClick={() => handleDeleteNote(note.id)}>DELETE</button>
+                            {editingNoteId === note.id ? (
+                                <>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        value={editingContent.title}
+                                        onChange={(e) =>
+                                            setEditingContent({ ...editingContent, title: e.target.value })
+                                        }
+                                    />
+                                    <textarea
+                                        name="body"
+                                        value={editingContent.body}
+                                        onChange={(e) =>
+                                            setEditingContent({ ...editingContent, body: e.target.value })
+                                        }
+                                    />
+                                    <button onClick={() => handleSaveNote(note.id)}>SAVE</button>
+                                    <button onClick={() => setEditingNoteId(null)}>CANCEL</button>
+                                </>
+                            ) : (
+                                <>
+                                    <h3>{note.title}</h3>
+                                    <p>{note.body}</p>
+                                    <button
+                                        onClick={() => {
+                                            setEditingNoteId(note.id);
+                                            setEditingContent({ title: note.title, body: note.body });
+                                        }}
+                                    >
+                                        EDIT
+                                    </button>
+                                    <button onClick={() => handleDeleteNote(note.id)}>DELETE</button>
+                                </>
+                            )}
                         </div>
                     ))}
+
                 </div>
             </div>
             {/* mascot and speech bubble section */}
