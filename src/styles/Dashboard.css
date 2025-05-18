@@ -42,8 +42,6 @@
     transform: scale(1.02);
 }
 
-
-
 .daily-scroll::-webkit-scrollbar,
 .overdue-scroll::-webkit-scrollbar {
     width: 8px;
@@ -72,6 +70,7 @@
     padding: 0.4rem;
     border-radius: 8px;
     border: none;
+    color: #434396;
     font-size: 0.9rem;
     background-color: #c7d8fb;
 }

@@ -1,0 +1,149 @@
+.braindump-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+}
+
+.newnote-container {
+    background-color: #FFEEF060;
+    height: 62vh;
+    width: 30vw;
+    border-radius: 50px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.notes-container {
+    background-color: #FFEEF060;
+    height: 62vh;
+    width: 30vw;
+    border-radius: 50px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.note {
+    background-color: #D5D5FF;
+    border-radius: 25px;
+    padding-top: 0.01rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
+    transition: transform 0.2s;
+}
+
+.note:hover {
+    transform: scale(1.02);
+}
+
+.notes-scroll {
+    height: 45vh;
+    overflow-y: auto;
+    margin-right: 2em;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.notes-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.notes-scroll::-webkit-scrollbar-track {
+    background: #C3C3D4;
+    border-radius: 10px;
+}
+
+.notes-scroll::-webkit-scrollbar-thumb {
+    background-color: #9D9DA7;
+    border-radius: 10px;
+}
+
+.newnote-form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin: 0.5rem;
+}
+
+.newnote-form input[type="text"] {
+    padding: 0.4rem;
+    border-radius: 8px;
+    border: none;
+    color: #434396;
+    font-size: 0.9rem;
+    background-color: #c7d8fb;
+}
+
+.newnote-form textarea{
+    padding: 0.4rem;
+    border-radius: 8px;
+    border: none;
+    color: #434396;
+    font-size: 0.7rem;
+    background-color: #c7d8fb;
+    resize: vertical;
+    min-height: 5vh
+}
+.editnote-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin: 0.5rem;
+}
+.editnote-form input[type="text"] {
+    padding: 0.4rem;
+    border-radius: 8px;
+    border: none;
+    color: #434396;
+    font-size: 0.9rem;
+    background-color: #c7d8fb;
+}
+
+.editnote-form textarea{
+    padding: 0.4rem;
+    border-radius: 8px;
+    border: none;
+    color: #434396;
+    font-size: 0.7rem;
+    background-color: #c7d8fb;
+    resize: vertical;
+    min-height: 5vh
+}
+
+
+.mascot-wrapperBD {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 22vw;
+}
+
+.mascot-containerBD {
+    width: 22vw;
+    height: auto;
+}
+
+.mascot-containerBD img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.mascot-speechBD {
+    border-color: white;
+    border-radius: 3rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    box-shadow: 0px 0px 30px rgb(255, 255, 255);
+}

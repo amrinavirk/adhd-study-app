@@ -67,18 +67,18 @@ const FocusTimerPage = () => {
         <div>
             {/* selection option section */}
             <div>
-                <label> FOCUS
-                    <select disabled={setStarted} value={focusTimer} onChange={(e) => setFocusTimer(Number(e.target.value))}>
-                        {[15, 20, 25, 30, 45, 60].map((min) => (
-                            <option key={min} value={min}>{min} min</option>
-                        ))}
-                    </select></label>
-                <label> BREAK
-                    <select disabled={setStarted} value={breakTimer} onChange={(e) => setBreakTimer(Number(e.target.value))}>
-                        {[5, 10, 15, 20].map((min) => (
-                            <option key={min} value={min}>{min} min</option>
-                        ))}
-                    </select></label>
+                <h2>FOCUS</h2>
+                <select disabled={setStarted} value={focusTimer} onChange={(e) => setFocusTimer(Number(e.target.value))}>
+                    {[15, 20, 25, 30, 45, 60].map((min) => (
+                        <option key={min} value={min}>{min} min</option>
+                    ))}
+                </select>
+                <h2>BREAK</h2>
+                <select disabled={setStarted} value={breakTimer} onChange={(e) => setBreakTimer(Number(e.target.value))}>
+                    {[5, 10, 15, 20].map((min) => (
+                        <option key={min} value={min}>{min} min</option>
+                    ))}
+                </select>
             </div>
 
             {/* actual timer section */}
@@ -106,9 +106,13 @@ const FocusTimerPage = () => {
             </div>
 
             {/* mascot and speech bubble section */}
-            <div>
-                {/* insert mascot/animation */}
-                <sub>25/5 is usually recommended but for longer sessions I use 45/15!!</sub>
+            <div className='mascot-wrapperFT'>
+                <div className="mascot-speechFT">
+                    <sub> 25/5 is usually recommended but for longer sessions I use 45/15!!!</sub>
+                </div>
+                <div className="mascot-containerFT">
+                    <img src={mascot} alt="mascot" />
+                </div>
             </div>
         </div>
     );

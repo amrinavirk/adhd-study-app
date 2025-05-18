@@ -83,7 +83,7 @@ const StudyVisualsPage = () => {
             <div>
                 {/* colour selection*/}
                 <fieldset>
-                    <legend>COLOURS</legend>
+                    <h2>COLOURS</h2>
                     {Object.entries(colourOptions).map(([name, hex]) => (
                         <label key={name} style={{ marginRight: '10px' }}>
                             <input
@@ -102,39 +102,39 @@ const StudyVisualsPage = () => {
                     ))}
                 </fieldset>
                 {/* intensity selection */}
-                <label>
-                    INTENSITY
-                    <select value={intensity} onChange={(e) => setIntensity(parseInt(e.target.value))}>
-                        {[1, 2, 3].map((level) => (
-                            <option key={level} value={level}>
-                                {level}
-                            </option>
-                        ))}
-                    </select>
-                </label>
+                <h2>INTENSITY</h2>
+                <select value={intensity} onChange={(e) => setIntensity(parseInt(e.target.value))}>
+                    {[1, 2, 3].map((level) => (
+                        <option key={level} value={level}>
+                            {level}
+                        </option>
+                    ))}
+                </select>
 
                 {/* speed selection */}
-                <label>
-                    SPEED
-                    <select value={speed} onChange={(e) => setSpeed(Number(e.target.value))}>
-                        {[0.5, 1, 1.5, 2].map((s) => (
-                            <option key={s} value={s}>
-                                {s}x
-                            </option>
-                        ))}
-                    </select>
-                </label>
+                <h2>SPEED</h2>
+                <select value={speed} onChange={(e) => setSpeed(Number(e.target.value))}>
+                    {[0.5, 1, 1.5, 2].map((s) => (
+                        <option key={s} value={s}>
+                            {s}x
+                        </option>
+                    ))}
+                </select>
             </div>
 
             {/* study visual canvas */}
-            <div style={{ width: '70vw' , height: '50vh', position: 'relative' }}>
+            <div style={{ width: '70vw', height: '50vh', position: 'relative' }}>
                 <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />
             </div>
 
             {/* mascot and speech bubble section */}
-            <div>
-                {/* insert mascot/animation */}
-                <sub>Customise your study visual!</sub>
+            <div className='mascot-wrapperSV'>
+                <div className="mascot-speechSV">
+                    <sub> Customise your study visual!</sub>
+                </div>
+                <div className="mascot-containerSV">
+                    <img src={mascot} alt="mascot" />
+                </div>
             </div>
         </div>
     );

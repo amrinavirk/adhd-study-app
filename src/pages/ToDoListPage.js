@@ -312,18 +312,13 @@ const ToDoListPage = () => {
                 <h2>TASKS</h2>
                 <div className="maintask-scroll">
                     {filteredTasks.map((task) => (
-                        <div key={task.id}>
+                        <div  className='taskMT' style={{ backgroundColor: task.colour }} key={task.id}>
                             {editingTaskId === task.id ? (
                                 <>
                                     <input
                                         name="title"
                                         value={inlineEditData.title}
                                         onChange={(e) => setInlineEditData({ ...inlineEditData, title: e.target.value })}
-                                    />
-                                    <textarea
-                                        name="subtasks"
-                                        value={inlineEditData.subtasks}
-                                        onChange={(e) => setInlineEditData({ ...inlineEditData, subtasks: e.target.value })}
                                     />
                                     <input
                                         type="date"
@@ -351,6 +346,24 @@ const ToDoListPage = () => {
                                             return <option key={value} value={value}>{label}</option>;
                                         })}
                                     </select>
+                                    <select
+                                        name="category"
+                                        value={inlineEditData.category}
+                                        onChange={(e) => setInlineEditData({ ...inlineEditData, category: e.target.value })}
+                                    >
+                                        <option value="unscheduled">UNSCHEDULED</option>
+                                        <option value="category1">CATEGORY1</option>
+                                        <option value="category2">CATEGORY2</option>
+                                        <option value="category3">CATEGORY3</option>
+                                        <option value="category4">CATEGORY4</option>
+                                        <option value="category5">CATEGORY5</option>
+                                        <option value="category6">CATEGORY6</option>
+                                    </select>
+                                    <textarea
+                                        name="subtasks"
+                                        value={inlineEditData.subtasks}
+                                        onChange={(e) => setInlineEditData({ ...inlineEditData, subtasks: e.target.value })}
+                                    />
                                     <button className='action-btn' onClick={() => handleInlineSave(task.id)}>Save</button>
                                     <button className='action-btn' onClick={() => setEditingTaskId(null)}>Cancel</button>
                                 </>
@@ -377,7 +390,8 @@ const ToDoListPage = () => {
                                             subtasks: task.subtasks,
                                             date: task.date,
                                             time: task.time,
-                                            duration: task.duration
+                                            duration: task.duration,
+                                            category: task.category
                                         });
                                     }}>Edit</button>
                                     <button className='action-btn' onClick={() => handleDeleteTask(task.id)}>Delete</button>
@@ -393,7 +407,7 @@ const ToDoListPage = () => {
                 <h2>UNSCHEDULED</h2>
                 <div className='unscheduled-scroll'>
                     {unscheduledTasks.map((task) => (
-                        <div key={task.id}>
+                        <div className='taskU' style={{ backgroundColor: task.colour }} key={task.id}>
                             {editingTaskId === task.id ? (
                                 <>
                                     <input
@@ -436,7 +450,7 @@ const ToDoListPage = () => {
                                                     setScheduleData({ ...scheduleData, category: e.target.value })
                                                 }
                                             >
-                                                <option value="">SELECT CATEGORY</option>
+                                                <option value=""></option>
                                                 <option value="category1">CATEGORY1</option>
                                                 <option value="category2">CATEGORY2</option>
                                                 <option value="category3">CATEGORY3</option>

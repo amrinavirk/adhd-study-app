@@ -136,20 +136,52 @@ const DashboardPage = () => {
                         overdueTasks.map((task) => (
                             <div className='taskD' style={{ backgroundColor: task.colour }} key={task.id}>
                                 <h3>{task.title}</h3>
-                                <h4>{task.date} | {task.time} | {
-                                    (() => {
-                                        const value = parseFloat(task.duration);
-                                        if (!value) return '';
-                                        const hours = Math.floor(value);
-                                        const minutes = value % 1 !== 0 ? 30 : 0;
-                                        return `${hours > 0 ? `${hours}h` : ''}${minutes > 0 ? ` ${minutes}m` : ''}`.trim();
-                                    })()
-                                }</h4>
+                                {reschedulingTaskId === task.id ? (
+                                    <div>
+                                        <div className='reschedule-form'>
+                                            <input
+                                                type="date"
+                                                value={rescheduleData.date}
+                                                onChange={(e) => setRescheduleData({ ...rescheduleData, date: e.target.value })}
+                                            />
+                                            <input
+                                                type="time"
+                                                value={rescheduleData.time}
+                                                onChange={(e) => setRescheduleData({ ...rescheduleData, time: e.target.value })}
+                                            />
+                                            <h4> | {
+                                            (() => {
+                                                const value = parseFloat(task.duration);
+                                                if (!value) return '';
+                                                const hours = Math.floor(value);
+                                                const minutes = value % 1 !== 0 ? 30 : 0;
+                                                return `${hours > 0 ? `${hours}h` : ''}${minutes > 0 ? ` ${minutes}m` : ''}`.trim();
+                                            })()
+                                        }</h4>
+                                        </div>
+                                        <button className='action-btn' onClick={handleSaveReschedule}>Save</button>
+                                        <button className='action-btn' onClick={() => setReschedulingTaskId(null)}>Cancel</button>
+                                        
+                                    </div>
+                                ) : (
+                                    <h4>
+                                        {task.date} | {task.time} | {
+                                            (() => {
+                                                const value = parseFloat(task.duration);
+                                                if (!value) return '';
+                                                const hours = Math.floor(value);
+                                                const minutes = value % 1 !== 0 ? 30 : 0;
+                                                return `${hours > 0 ? `${hours}h` : ''}${minutes > 0 ? ` ${minutes}m` : ''}`.trim();
+                                            })()
+                                        }
+                                    </h4>
+                                )}
+
                                 <h5>{task.category}</h5>
                                 <h4>Sub-tasks:</h4>
                                 <p>{task.subtasks}</p>
                                 <button className='action-btn' onClick={() => handleRescheduleTask(task)}>Reschedule</button>
-                                {reschedulingTaskId === task.id && (
+                                {/* {reschedulingTaskId === task.id && (
                                     <div>
                                         <div className='reschedule-form'>
                                             <input
@@ -166,7 +198,7 @@ const DashboardPage = () => {
                                         <button className='action-btn' onClick={handleSaveReschedule}>Save</button>
                                         <button className='action-btn' onClick={() => setReschedulingTaskId(null)}>Cancel</button>
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         ))
                     )}

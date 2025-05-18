@@ -149,67 +149,71 @@ const BrainDumpPage = () => {
     };
 
     return (
-        <div>
+        <div className='braindump-wrapper'>
             {/* new note section */}
-            <div>
-                <input
-                    type="text"
-                    name="title"
-                    value={newNote.title}
-                    onChange={handleChange}
-                    placeholder="Title"
-                />
-                <textarea
-                    name="body"
-                    value={newNote.body}
-                    onChange={handleChange}
-                    placeholder="Body of the note"
-                ></textarea>
-                <button onClick={editingIndex === null ? handleAddNote : handleSaveNote}>
-                    {editingIndex === null ? 'ADD NOTE' : 'SAVE NOTE'}
+            <div className='newnote-container'>
+                <div className='newnote-form'>
+                    <input
+                        type="text"
+                        name="title"
+                        value={newNote.title}
+                        onChange={handleChange}
+                        placeholder='Title'
+                    />
+                    <textarea
+                        name="body"
+                        value={newNote.body}
+                        onChange={handleChange}
+                        placeholder="Dump your thoughts before they distract you"
+                    ></textarea>
+                </div>
+                <button className='action-btn' onClick={editingIndex === null ? handleAddNote : handleSaveNote}>
+                    {editingIndex === null ? 'Add Note' : 'Save Note'}
                 </button>
-                <button onClick={handleCancel}>CANCEL</button> { }
+                <button className='action-btn' onClick={handleCancel}>Cancel</button> { }
             </div>
 
             {/* main notes section */}
-            <div>
+            <div className='notes-container'>
                 <h2>NOTES</h2>
-                <div className="scroll-container">
+                <div className="notes-scroll">
                     {notes.map((note) => (
-                        <div key={note.id}>
+                        <div className="note" key={note.id}>
                             {editingNoteId === note.id ? (
-                                <>
-                                    <input
-                                        type="text"
-                                        name="title"
-                                        value={editingContent.title}
-                                        onChange={(e) =>
-                                            setEditingContent({ ...editingContent, title: e.target.value })
-                                        }
-                                    />
-                                    <textarea
-                                        name="body"
-                                        value={editingContent.body}
-                                        onChange={(e) =>
-                                            setEditingContent({ ...editingContent, body: e.target.value })
-                                        }
-                                    />
-                                    <button onClick={() => handleSaveNote(note.id)}>SAVE</button>
-                                    <button onClick={() => setEditingNoteId(null)}>CANCEL</button>
-                                </>
+                                <div>
+                                    <div className='editnote-form'>
+                                        <input
+                                            type="text"
+                                            name="title"
+                                            value={editingContent.title}
+                                            onChange={(e) =>
+                                                setEditingContent({ ...editingContent, title: e.target.value })
+                                            }
+                                        />
+                                        <textarea
+                                            name="body"
+                                            value={editingContent.body}
+                                            onChange={(e) =>
+                                                setEditingContent({ ...editingContent, body: e.target.value })
+                                            }
+                                        />
+                                    </div>
+                                    <button className='action-btn' onClick={() => handleSaveNote(note.id)}>Save</button>
+                                    <button className='action-btn' onClick={() => setEditingNoteId(null)}>Cancel</button>
+                                </div>
                             ) : (
                                 <>
                                     <h3>{note.title}</h3>
-                                    <p>{note.body}</p>
-                                    <button
+                                    <h4>{note.body}</h4>
+                                    <button className='action-btn'
                                         onClick={() => {
                                             setEditingNoteId(note.id);
                                             setEditingContent({ title: note.title, body: note.body });
                                         }}
                                     >
-                                        EDIT
+                                        Edit
                                     </button>
-                                    <button onClick={() => handleDeleteNote(note.id)}>DELETE</button>
+                                    <button className='action-btn' onClick={() => handleDeleteNote(note.id)}>Delete</button>
                                 </>
                             )}
                         </div>
@@ -218,9 +222,13 @@ const BrainDumpPage = () => {
                 </div>
             </div>
             {/* mascot and speech bubble section */}
-            <div>
-                {/* insert mascot/animation */}
-                <sub>Don't forget to address and delete old notes to declutter!</sub>
+            <div className='mascot-wrapperBD'>
+                <div className="mascot-speechBD">
+                    <sub> Don't forget to address and delete old notes to declutter!</sub>
+                </div>
+                <div className="mascot-containerBD">
+                    <img src={mascot} alt="mascot" />
+                </div>
             </div>
         </div>
     );
