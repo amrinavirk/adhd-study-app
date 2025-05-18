@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
+import '../styles/StudyVisuals.css';
+
 const StudyVisualsPage = () => {
     const canvasRef = useRef(null);
     const [colours, setColours] = useState(['#F7DDF0', '#FFD7B7', '#FFFAB9', '#CEFFD2', '#AFCAFF', '#D5D5FF']);

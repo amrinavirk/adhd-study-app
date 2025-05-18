@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import Task from '../models/task';
+import '../styles/ToDoList.css';
 
 const dbName = 'ToDoListDB';
 const storeName = 'taskStore';
@@ -31,7 +32,7 @@ const ToDoListPage = () => {
 
     const [schedulingTaskId, setSchedulingTaskId] = useState(null);
     const [scheduleData, setScheduleData] = useState({ date: '', time: '', category: '' });
-    
+
     const [editingTaskId, setEditingTaskId] = useState(null);
     const [inlineEditData, setInlineEditData] = useState({});
 

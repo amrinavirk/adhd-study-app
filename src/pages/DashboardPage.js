@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import Task from '../models/task'
+import '../styles/Dashboard.css';
 
 const dbName = 'ToDoListDB';
 const storeName = 'taskStore';

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import '../styles/BrainDump.css';
 
 const dbName = 'BrainDumpDB';
 const storeName = 'notesStore';
