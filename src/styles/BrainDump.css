@@ -5,21 +5,28 @@
     gap: 4rem;
 }
 
-.newnote-container {
-    background-color: #FFEEF060;
-    height: 62vh;
-    width: 30vw;
-    border-radius: 50px;
-    align-items: center;
+.left-column{
     display: flex;
     flex-direction: column;
+    width: 35vw;
+    gap: 2rem;
+}
+
+.newnote-container {
+    background-color: #FFEEF060;
+    height: 30vh;
+    width: 100%;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 1rem;
 }
 
 .notes-container {
     background-color: #FFEEF060;
     height: 62vh;
-    width: 30vw;
+    width: 40vw;
     border-radius: 50px;
     align-items: center;
     display: flex;
@@ -43,7 +50,7 @@
 }
 
 .notes-scroll {
-    height: 45vh;
+    height: 100%;
     overflow-y: auto;
     margin-right: 2em;
     width: 100%;
@@ -64,33 +71,41 @@
     border-radius: 10px;
 }
 
-.newnote-form{
+.newnote-form {
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
-    margin: 0.5rem;
+    width: 32vw;
 }
 
 .newnote-form input[type="text"] {
     padding: 0.4rem;
-    border-radius: 8px;
+    border-radius: 25px;
     border: none;
     color: #434396;
     font-size: 0.9rem;
     background-color: #c7d8fb;
 }
 
-.newnote-form textarea{
+.newnote-form textarea {
     padding: 0.4rem;
-    border-radius: 8px;
+    border-radius: 15px;
     border: none;
     color: #434396;
     font-size: 0.7rem;
     background-color: #c7d8fb;
     resize: vertical;
-    min-height: 5vh
+    min-height: 10vh;
 }
+
+.newnote-form input::placeholder,
+.newnote-form textarea::placeholder {
+    color: #434396;
+    opacity: 1;
+}
+
 .editnote-form {
     display: flex;
     flex-direction: column;
@@ -98,6 +113,7 @@
     gap: 0.5rem;
     margin: 0.5rem;
 }
+
 .editnote-form input[type="text"] {
     padding: 0.4rem;
     border-radius: 8px;
@@ -107,7 +123,7 @@
     background-color: #c7d8fb;
 }
 
-.editnote-form textarea{
+.editnote-form textarea {
     padding: 0.4rem;
     border-radius: 8px;
     border: none;
@@ -121,14 +137,17 @@
 
 .mascot-wrapperBD {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 22vw;
+    align-items: flex-end;
+    justify-content:space-between;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 1rem;
 }
 
 .mascot-containerBD {
-    width: 22vw;
+    width: 70%;
     height: auto;
+    flex-direction: row;
 }
 
 .mascot-containerBD img {
@@ -138,12 +157,14 @@
 }
 
 .mascot-speechBD {
+    flex-direction: row;
     border-color: white;
     border-radius: 3rem;
     padding: 1.5rem;
-    margin-top: 1.5rem;
+    margin-left: 2rem;
     margin-bottom: 2rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 500;
     box-shadow: 0px 0px 30px rgb(255, 255, 255);
+    text-align: center;
 }

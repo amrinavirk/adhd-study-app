@@ -150,27 +150,39 @@ const BrainDumpPage = () => {
 
     return (
         <div className='braindump-wrapper'>
-            {/* new note section */}
-            <div className='newnote-container'>
-                <div className='newnote-form'>
-                    <input
-                        type="text"
-                        name="title"
-                        value={newNote.title}
-                        onChange={handleChange}
-                        placeholder='Title'
-                    />
-                    <textarea
-                        name="body"
-                        value={newNote.body}
-                        onChange={handleChange}
-                        placeholder="Dump your thoughts before they distract you"
-                    ></textarea>
+            <div className='left-column'>
+                {/* new note section */}
+                <div className='newnote-container'>
+                    <div className='newnote-form'>
+                        <input
+                            type="text"
+                            name="title"
+                            value={newNote.title}
+                            onChange={handleChange}
+                            placeholder='Title'
+                        />
+                        <textarea
+                            name="body"
+                            value={newNote.body}
+                            onChange={handleChange}
+                            placeholder="Dump your thoughts before they distract you"
+                        ></textarea>
+                    </div>
+                    <button className='action-btn' onClick={editingIndex === null ? handleAddNote : handleSaveNote}>
+                        {editingIndex === null ? 'Add Note' : 'Save Note'}
+                    </button>
+                    <button className='action-btn' onClick={handleCancel}>Cancel</button> { }
                 </div>
-                <button className='action-btn' onClick={editingIndex === null ? handleAddNote : handleSaveNote}>
-                    {editingIndex === null ? 'Add Note' : 'Save Note'}
-                </button>
-                <button className='action-btn' onClick={handleCancel}>Cancel</button> { }
+
+                {/* mascot and speech bubble section */}
+                <div className='mascot-wrapperBD'>
+                    <div className="mascot-speechBD">
+                        <sub> Don't forget to address and delete old notes to declutter!</sub>
+                    </div>
+                    <div className="mascot-containerBD">
+                        <img src={mascot} alt="mascot" />
+                    </div>
+                </div>
             </div>
 
             {/* main notes section */}
@@ -221,15 +233,7 @@ const BrainDumpPage = () => {
 
                 </div>
             </div>
-            {/* mascot and speech bubble section */}
-            <div className='mascot-wrapperBD'>
-                <div className="mascot-speechBD">
-                    <sub> Don't forget to address and delete old notes to declutter!</sub>
-                </div>
-                <div className="mascot-containerBD">
-                    <img src={mascot} alt="mascot" />
-                </div>
-            </div>
+
         </div>
     );
 }
