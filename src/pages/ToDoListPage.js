@@ -363,7 +363,7 @@ const ToDoListPage = () => {
                                     <h5>{task.category}</h5>
                                     <h4>Sub-tasks:</h4>
                                     <p>{task.subtasks}</p>
-                                    <button className='action-btn' onClick={() => handleCompleteTask(task.id)}>Completed</button>
+                                    {/* <button className='action-btn' onClick={() => handleCompleteTask(task.id)}>Completed</button> */}
                                     <button className='action-btn' onClick={() => {
                                         setEditingTaskId(task.id);
                                         setInlineEditData({
