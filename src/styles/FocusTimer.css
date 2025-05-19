@@ -1,8 +1,92 @@
+.focustimer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 2rem;
+    gap: 4rem;
+}
+
+.left-column {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.time-selection {
+    display: flex;
+    gap: 2rem;
+}
+
+.selection-block {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.selection-block h2 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.selection-block select {
+    padding: 0.7rem;
+    border-radius: 15px;
+    font-size: 1rem;
+    text-align: center;
+    background-color: #FFEEF060;
+    color: #434396;
+    border: none;
+}
+
+.timer-container {
+    height: 40vh;
+    width: 40vw;
+    background-color: #FFEEF060;
+    padding: 2rem;
+    border-radius: 50px;
+    
+}
+
+
+.timer-container h2 {
+    font-size: 7rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.timer-container h5 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.progress-bar {
+    height: 5vh;
+    width: 100%;
+    background: #c7d8fb;
+    border: 2px solid #434396;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress {
+    height: 100%;
+    background-color: #8FB4FF;
+    transition: width linear;
+}
+
+
 .mascot-wrapperFT {
+    width: 30vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 22vw;
+    justify-content: center;
+    gap: 2rem;
+    margin-right: 1rem;
 }
 
 .mascot-containerFT {
@@ -20,9 +104,7 @@
     border-color: white;
     border-radius: 3rem;
     padding: 1.5rem;
-    margin-top: 1.5rem;
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
     box-shadow: 0px 0px 30px rgb(255, 255, 255);
 }

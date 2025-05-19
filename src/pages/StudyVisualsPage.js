@@ -78,11 +78,11 @@ const StudyVisualsPage = () => {
     }, [colours, intensity, speed]);
 
     return (
-        <div>
+        <div className='studyvisuals-wrapper'>
             {/* selection option section */}
-            <div>
+            <div className='left-controls'>
                 {/* colour selection*/}
-                <fieldset>
+                <fieldset className='colours'>
                     <h2>COLOURS</h2>
                     {Object.entries(colourOptions).map(([name, hex]) => (
                         <label key={name} style={{ marginRight: '10px' }}>
@@ -102,39 +102,46 @@ const StudyVisualsPage = () => {
                     ))}
                 </fieldset>
                 {/* intensity selection */}
-                <h2>INTENSITY</h2>
-                <select value={intensity} onChange={(e) => setIntensity(parseInt(e.target.value))}>
-                    {[1, 2, 3].map((level) => (
-                        <option key={level} value={level}>
-                            {level}
-                        </option>
-                    ))}
-                </select>
+                <div className='speed-intensity'>
+                    <div className='control-block'>
+                        <h2>INTENSITY</h2>
+                        <select value={intensity} onChange={(e) => setIntensity(parseInt(e.target.value))}>
+                            {[1, 2, 3].map((level) => (
+                                <option key={level} value={level}>
+                                    {level}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
-                {/* speed selection */}
-                <h2>SPEED</h2>
-                <select value={speed} onChange={(e) => setSpeed(Number(e.target.value))}>
-                    {[0.5, 1, 1.5, 2].map((s) => (
-                        <option key={s} value={s}>
-                            {s}x
-                        </option>
-                    ))}
-                </select>
+                    {/* speed selection */}
+                    <div className='control-block'>
+                        <h2>SPEED</h2>
+                        <select value={speed} onChange={(e) => setSpeed(Number(e.target.value))}>
+                            {[0.5, 1, 1.5, 2].map((s) => (
+                                <option key={s} value={s}>
+                                    {s}x
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
             </div>
 
             {/* study visual canvas */}
-            <div style={{ width: '70vw', height: '50vh', position: 'relative' }}>
+            <div className='canvas-container'>
                 <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />
             </div>
 
             {/* mascot and speech bubble section */}
             <div className='mascot-wrapperSV'>
-                <div className="mascot-speechSV">
-                    <sub> Customise your study visual!</sub>
-                </div>
                 <div className="mascot-containerSV">
                     <img src={mascot} alt="mascot" />
                 </div>
+                <div className="mascot-speechSV">
+                    <sub> Customise your study visual!</sub>
+                </div>
+
             </div>
         </div>
     );

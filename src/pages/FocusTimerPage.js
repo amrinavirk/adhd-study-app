@@ -64,44 +64,40 @@ const FocusTimerPage = () => {
         [focusTimer, breakTimer, isFocus, setStarted]);
 
     return (
-        <div>
-            {/* selection option section */}
-            <div>
-                <h2>FOCUS</h2>
-                <select disabled={setStarted} value={focusTimer} onChange={(e) => setFocusTimer(Number(e.target.value))}>
-                    {[15, 20, 25, 30, 45, 60].map((min) => (
-                        <option key={min} value={min}>{min} min</option>
-                    ))}
-                </select>
-                <h2>BREAK</h2>
-                <select disabled={setStarted} value={breakTimer} onChange={(e) => setBreakTimer(Number(e.target.value))}>
-                    {[5, 10, 15, 20].map((min) => (
-                        <option key={min} value={min}>{min} min</option>
-                    ))}
-                </select>
-            </div>
-
-            {/* actual timer section */}
-            <div>
-                <h2>{isFocus ? 'Focus Time' : 'Break Time'}</h2>
-                <div style={{ fontSize: '3em' }}>{formatTimer(timeLeft)}</div>
-                {/* placeholder for progress bar */}
-                <div style={{
-                    height: '10px',
-                    width: '100%',
-                    background: '#ddd',
-                    margin: '10px 0'
-                }}>
-                    <div style={{
-                        height: '100%',
-                        width: `${(timeLeft / (isFocus ? focusTimer * 60 : breakTimer * 60)) * 100}%`,
-                        background: '#4caf50'
-                    }}></div>
+        <div className='focustimer-wrapper'>
+            <div className='left-column'>
+                <div className='time-selection'>
+                    <div className='selection-block'>
+                        {/* selection option section */}
+                        <h2>FOCUS</h2>
+                        <select disabled={setStarted} value={focusTimer} onChange={(e) => setFocusTimer(Number(e.target.value))}>
+                            {[15, 20, 25, 30, 45, 60].map((min) => (
+                                <option key={min} value={min}>{min} min</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className='selection-block'>
+                        <h2>BREAK</h2>
+                        <select disabled={setStarted} value={breakTimer} onChange={(e) => setBreakTimer(Number(e.target.value))}>
+                            {[5, 10, 15, 20].map((min) => (
+                                <option key={min} value={min}>{min} min</option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
-                <div>
-                    <button onClick={handleStart} disabled={timerGoing}>START</button>
-                    <button onClick={handleStop} disabled={!timerGoing}>STOP</button>
-                    <button onClick={handleReset} disabled={!setStarted}>RESET</button>
+
+                {/* actual timer section */}
+                <div className='timer-container'>
+                    <h5>{isFocus ? 'Focus Time' : 'Break Time'}</h5>
+                    <h2>{formatTimer(timeLeft)}</h2>
+                    <div className='progress-bar'>
+                        <div className='progress' style={{
+                            width: `${(timeLeft / (isFocus ? focusTimer * 60 : breakTimer * 60)) * 100}%`,
+                        }}></div>
+                    </div>
+                        <button className='action-btn' onClick={handleStart} disabled={timerGoing}>START</button>
+                        <button className='action-btn' onClick={handleStop} disabled={!timerGoing}>STOP</button>
+                        <button className='action-btn' onClick={handleReset} disabled={!setStarted}>RESET</button>
                 </div>
             </div>
 
