@@ -15,8 +15,6 @@ To use Bubble Buddy, users need:
 - Node.js and npm installed for local development
 - A modern web browser for deployment
 
-For developers, please refer to the [installation notes](./INSTALLATION.md) for detailed setup instructions including dependencies and build steps.
-
 ## Usage
 
 To get started with the app locally:
