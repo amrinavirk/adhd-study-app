@@ -438,6 +438,7 @@ const ToDoListPage = () => {
                                     </>
                                 ) : (
                                     <>
+                                        <h3>{task.title}</h3>
                                         <h4>Sub-tasks:</h4>
                                         <p>{task.subtasks}</p>
 
